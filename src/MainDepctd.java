@@ -5,6 +5,13 @@ class Calculator {
     public int add(int a, int b) {
         return a + b;
     }
+
+    /**
+     * Adding two numbers
+     * @param a First Integer
+     * @param b Second Integer
+     * @return Sum of two numbers
+     */
     //실행은 되나 경고가 뜸
     public int addNumber(int a, int b) {
         return a + b;
