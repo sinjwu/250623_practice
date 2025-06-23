@@ -1,4 +1,5 @@
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 class ReflectionDemo {
     public String noSecret = "비밀 아님";
@@ -22,6 +23,23 @@ public class MainReflection {
         Field[] flds = clazz.getDeclaredFields();
         for(Field fld: flds) {
             System.out.println("필드: " + fld.getName());
+        }
+        System.out.println("\n[메소드 목록]");
+        Method[] mthds = clazz.getDeclaredMethods();
+        for(Method mthd: mthds) {
+            System.out.println("메소드: " + mthd.getName());
+            for(Class<?> paramType: mthd.getParameterTypes()) {
+                System.out.println("파라미터 타입: " + paramType.getSimpleName());
+            }
+        }
+        try {
+            Object instance = clazz.getDeclaredConstructor().newInstance();
+            Method greetMethod = clazz.getMethod("greet", String.class);
+            Object greetResult = greetMethod.invoke(instance, "sinjwu");
+            System.out.println("\n[퍼블릭 메소드 실행 결과]");
+            System.out.println("greet(): " + greetResult);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
