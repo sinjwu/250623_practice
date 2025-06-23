@@ -38,6 +38,12 @@ public class MainReflection {
             Object greetResult = greetMethod.invoke(instance, "sinjwu");
             System.out.println("\n[퍼블릭 메소드 실행 결과]");
             System.out.println("greet(): " + greetResult);
+
+            Method revealMethod = clazz.getDeclaredMethod("reveal", String.class);
+            revealMethod.setAccessible(true);
+            Object revealResult = revealMethod.invoke(instance, "abcdef");
+            System.out.println("\n[프라이빗 메소드 실행 결과]");
+            System.out.println("reveal(): " + revealResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
